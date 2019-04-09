@@ -1,0 +1,25 @@
+{
+  "name": "water-jug-cli",
+  "version": "1.0.0",
+  "description": "This repository contains CLI Water Jug Riddle application",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "nyc mocha \"**/__tests__/**/*.spec.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gdenari/water-jug.git"
+  },
+  "author": "Gonzalo Denari",
+  "homepage": "https://github.com/gdenari/water-jug#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "mock": "^0.1.1",
+    "nyc": "^13.3.0",
+    "sinon": "^7.3.1"
+  }
+}
