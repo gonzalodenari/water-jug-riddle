@@ -1,27 +1,39 @@
-*.dat
-*.iml
+lib-cov
+*.seed
 *.log
+*.csv
+*.dat
 *.out
 *.pid
-*.seed
-*.sublime-*
-*.swo
+*.gz
 *.swp
-*.tgz
-*.xml
-.DS_Store
-.idea
-.project
-.strong-pm
-coverage
-node_modules
-npm-debug.log
-npm-debug.log.*
+
+pids
 logs
-*.env
-package-lock.json
-.lambda
-.nyc_output
+results
+tmp
+
+# Build
+public/css/main.css
+
+# Coverage reports
 coverage
-*.zip
-.vscode
+
+# API keys and secrets
+.env
+
+# Dependency directory
+node_modules
+bower_components
+
+# Editors
+.idea
+*.iml
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Ignore built ts files
+dist/**/*
+
