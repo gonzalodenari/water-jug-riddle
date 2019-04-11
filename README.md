@@ -15,7 +15,7 @@ The Water Jug CLI app depends on the following project:
 - water-jug-core: Please visit the following link for more info: https://github.com/gonzalodenari/water-jug-riddle-core
 
 ## Requirements
-In order to build and run the application, make sure to have Docker version 17.03 or greater.
+In order to build and run the application, make sure to have Docker version 17.03 or greater installed on your local machine.
 
 If not please visit https://www.docker.com
 
