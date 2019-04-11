@@ -1,2 +1,2 @@
-import app from "./cli/index";
+import app from "./cli";
 app();

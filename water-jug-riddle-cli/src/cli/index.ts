@@ -1,17 +1,17 @@
 import waterJug, { RiddleInput } from "water-jug-riddle-core";
-import options from "./options";
+import view from "./view";
 
-const executeRiddle = async () => {
-    const input: RiddleInput = await options.readInput();
+const executeRiddle = async (): Promise<any> => {
+    const input: RiddleInput = await view.readInput();
     const response = waterJug(input);
-    options.displaySolution(response);
-    const again: boolean = await options.continueMessage();
+    view.displaySolution(response);
+    const again: boolean = await view.continueMessage();
     if (again) {
-        executeRiddle();
+        return executeRiddle();
     }
 };
 
-export default function run() {
-    options.welcomeMessage();
-    executeRiddle();
+export default async function run() {
+    view.welcomeMessage();
+    return executeRiddle();
 }

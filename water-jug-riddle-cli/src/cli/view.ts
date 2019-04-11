@@ -1,37 +1,27 @@
 import { RiddleInput, RiddleResponse, IState, Action } from "water-jug-riddle-core";
-import reader from "./reader";
-
-// colors
-const green = "\x1b[32m";
-const cyan = "\x1b[36m";
-const white = "\x1b[37m";
-const red = "\x1b[31m";
-const yellow = "\x1b[33m";
-const magenta = "\x1b[35m";
+import reader, { Question } from "./io/input";
+import { println, print, Color, getColorAsString } from "./io/output";
 
 const welcomeMessage = () => {
-    const message = `WELCOME TO THE WATER JUG RIDDLE CLI TOOL\n\ Please enter X-gallon, Y-gallon, and Z-Measure values to continue:\n\n`;
-    console.log(cyan, message);
+    print("WELCOME TO THE WATER JUG RIDDLE CLI TOOL", Color.Cyan);
+    println("Please enter X-gallon, Y-gallon, and Z-Measure values to continue:\n", Color.Cyan);
 };
 
 const readInput = async (): Promise<RiddleInput> => {
-    const questions = [{
-            type: "input",
+    const questions: Question[] = [{
             name: "X",
             message: "What's the value for Jug X?",
         },
         {
-            type: "input",
             name: "Y",
             message: "What's the value for Jug Y?",
         },
         {
-            type: "input",
             name: "Z",
             message: "What's the value for Measure Z?",
         }
     ];
-    const answer: any = await reader.read(questions);
+    const answer: any = await reader.readQuestions(questions);
     return {
         jugX: answer.X,
         jugY: answer.Y,
@@ -40,37 +30,35 @@ const readInput = async (): Promise<RiddleInput> => {
 };
 
 const continueMessage = async (): Promise<boolean> => {
-    const questions = [{
-        type: "confirm",
+    const response: boolean = await reader.confirm({
         name: "continue",
         message: "Do you want to continue playing with the tool?",
-    }];
-    const response: any = await reader.read(questions);
-    console.log("\n");
-    return response.continue;
+    });
+    println("");
+    return response;
 };
 
 const getActionColor = (action: Action) => {
     if (action == Action.Fill) {
-        return green;
+        return getColorAsString(Color.Green);
     } else if (action == Action.Transfer) {
-        return yellow;
+        return getColorAsString(Color.Yellow);
     } else {
-        return red;
+        return getColorAsString(Color.Red);
     }
 };
 
 const displaySolution = (response: RiddleResponse) => {
     if (!response.hasSolution) {
-        console.log("\nThere is no solution for these inputs!\n");
+        println("\nThere is no solution for these inputs!");
     } else {
-        console.log(`\nSolution found after ${response.actions.length} steps:\n`);
+        println(`\nSolution found after ${response.actions.length} steps:`);
         response.states.forEach((state: IState, index: number) => {
             const action = (response.actions[index] == 0) ? "Fill" : (response.actions[index] == 1) ? "Transfer" : "Empty";
             const actionColor = getActionColor(response.actions[index]);
-            console.log(`\t${index + 1}) jugX = ${state.x}, jugY = ${state.y} \t ${actionColor}<- ${action} ${white}`);
+            print(`\t${index + 1}) jugX = ${state.x}, jugY = ${state.y} \t\t ${actionColor}<- ${action} ${getColorAsString(Color.White)}`);
         });
-        console.log("\n\n");
+        println("");
     }
 };
 
