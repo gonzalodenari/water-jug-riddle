@@ -11,7 +11,7 @@ water.
 This project provides the CLI interface to execute the Water Jug algorithm implemented in the water-jug-riddle-core module. 
 
 ## Dependencies
-The Water Jug CLI app depends on the following core dependency:
+The Water Jug CLI app depends on the following project:
 - water-jug-core: Please visit the following link for more info: https://github.com/gonzalodenari/water-jug-riddle-core
 
 ## Requirements
@@ -31,7 +31,7 @@ Once installed you can just run the cli tool with:
 - `./startCLI.sh`
 
 ## Uninstall
-To uninstall the app (remove images) just type:
+To uninstall the app (remove docker image) just type:
 - `./uninstallCLI.sh`
 
 ## Run tests
